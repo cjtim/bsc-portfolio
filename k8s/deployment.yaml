@@ -111,7 +111,7 @@ spec:
         # Application
         - name: bsc-portfolio
           # TAG will be replace during Gitlab CI pipeline
-          image: registry.cloud.okteto.net/cjtim/bsc-portfolio:c6c03d3a
+          image: IMAGE:TAG
           envFrom:
             - secretRef:
                 name: wallet

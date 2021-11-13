@@ -32,7 +32,10 @@ okteto:
   script:
     - export OKTETO_TOKEN=$(echo $OKTETO_TOKEN | base64 -d)
     - okteto namespace
-    - sed -e "s/TAG/$TAG/" k8s/deployment.yaml | kubectl apply -f -
+    - |
+      sed -e "s/TAG/$TAG/" k8s/deployment.yaml \
+      | sed -e "s/IMAGE/$OKTETO_IMAGE_TAG/" \
+      | kubectl apply -f -
     - kubectl apply -f k8s/service.yaml
   rules:
     - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
