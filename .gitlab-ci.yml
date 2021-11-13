@@ -5,6 +5,7 @@ stages:
 variables:
   OKTETO_REGISTRY: registry.cloud.okteto.net
   OKTETO_IMAGE_TAG: $OKTETO_REGISTRY/$CI_PROJECT_PATH
+  SED_OKTETO_IMAGE_TAG: "$OKTETO_REGISTRY\/cjtim\/bsc-portfolio"
   TAG: $CI_COMMIT_SHORT_SHA
   # For dind
   DOCKER_HOST: tcp://docker:2375/
@@ -34,7 +35,7 @@ okteto:
     - okteto namespace
     - |
       sed -e "s/TAG/$TAG/" k8s/deployment.yaml \
-      | sed -e "s/IMAGE/$OKTETO_IMAGE_TAG/" \
+      | sed -e "s/IMAGE/$SED_OKTETO_IMAGE_TAG/" \
       | kubectl apply -f -
     - kubectl apply -f k8s/service.yaml
   rules:
