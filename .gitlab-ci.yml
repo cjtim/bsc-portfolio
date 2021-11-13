@@ -5,7 +5,6 @@ stages:
 variables:
   OKTETO_REGISTRY: registry.cloud.okteto.net
   OKTETO_IMAGE_TAG: $OKTETO_REGISTRY/$CI_PROJECT_PATH
-  SED_OKTETO_IMAGE_TAG: "registry.cloud.okteto.net\/cjtim\/bsc-portfolio"
   TAG: $CI_COMMIT_SHORT_SHA
   # For dind
   DOCKER_HOST: tcp://docker:2375/
@@ -33,10 +32,7 @@ okteto:
   script:
     - export OKTETO_TOKEN=$(echo $OKTETO_TOKEN | base64 -d)
     - okteto namespace
-    - |
-      sed -e "s/TAG/$TAG/" k8s/deployment.yaml \
-      | sed -e "s/IMAGE/$SED_OKTETO_IMAGE_TAG/" \
-      | kubectl apply -f -
+    - sed -e "s/TAG/$TAG/" k8s/deployment.yaml | kubectl apply -f -
     - kubectl apply -f k8s/service.yaml
   rules:
     - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
