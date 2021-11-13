@@ -1,0 +1,12 @@
+{
+  "name": "bsc-portfolio",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cron": "^1.8.2",
+    "ethers": "^5.5.1"
+  }
+}
