@@ -5,7 +5,7 @@ stages:
 variables:
   OKTETO_REGISTRY: registry.cloud.okteto.net
   OKTETO_IMAGE_TAG: $OKTETO_REGISTRY/$CI_PROJECT_PATH
-  SED_OKTETO_IMAGE_TAG: "$OKTETO_REGISTRY\/cjtim\/bsc-portfolio"
+  SED_OKTETO_IMAGE_TAG: "registry.cloud.okteto.net\/cjtim\/bsc-portfolio"
   TAG: $CI_COMMIT_SHORT_SHA
   # For dind
   DOCKER_HOST: tcp://docker:2375/
