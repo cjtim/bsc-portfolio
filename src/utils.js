@@ -2,10 +2,20 @@ import { createWriteStream } from "fs";
 import http from "http";
 
 function logFile(out) {
-  const logFile = createWriteStream("/var/log/port.log", { flags: "a" });
-  console.info(out);
-  logFile.write(out+'\n');
-  logFile.close()
+  const DefaultLog = "/var/log/port.log";
+  const AlternativeLog = "./port.log";
+  let defaultLog = createWriteStream(DefaultLog, { flags: "a" });
+  defaultLog.on("open", () => {
+    console.info(out);
+    defaultLog.write(out + "\n");
+    defaultLog.close();
+  });
+  defaultLog.on("error", (e) => {
+    const alter = createWriteStream(AlternativeLog, { flags: "a" });
+    console.info(out);
+    alter.write(out + "\n");
+    alter.close();
+  });
 }
 
 /**

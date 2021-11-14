@@ -1,10 +1,11 @@
 import axios from "axios";
 import { ethers, utils } from "ethers";
+import OneInch from "./1inch.js";
 import provider from "./ethers.js";
 
 const XMSToken = "0x7859b01bbf675d67da8cd128a50d155cd881b576";
 const MarsContract = "0xb7881f5142245531c3fb938a37b5d2489efd2c01";
-const CAKE_BNB_PAIR_PID = "1"
+const CAKE_BNB_PAIR_PID = "1";
 const daiAbi = [
   "function pendingToken(uint256 _pid, address _user) public view returns (uint256)",
 ];
@@ -23,9 +24,6 @@ export default class MarsEcosystem {
   }
 
   static async getPrice() {
-    const { data } = await axios.get(
-      "https://api.pancakeswap.info/api/v2/tokens/" + XMSToken
-    );
-    return data.data.price;
+    return OneInch.getPrice(XMSToken);
   }
 }
