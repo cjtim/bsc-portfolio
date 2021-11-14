@@ -1,10 +1,10 @@
 import { CronJob } from "cron";
 import { utils } from "ethers";
-import provider from "./ethers.js";
-import Gyro from "./gyro.js";
-import MarsEcosystem from "./mars.js";
-import Pancake from "./pancake.js";
-import { logFile, startServer } from "./utils.js";
+import provider from "./utils/ethers.js";
+import Gyro from "./protocols/gyro.js";
+import MarsEcosystem from "./protocols/mars.js";
+import Pancake from "./utils/pancake.js";
+import { logFile, startServer } from "./utils/utils.js";
 
 const WALLET = process.env.WALLET;
 if (!WALLET) {

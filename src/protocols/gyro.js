@@ -1,7 +1,6 @@
-import axios from "axios";
 import { ethers, utils } from "ethers";
-import OneInch from "./1inch.js";
-import provider from "./ethers.js";
+import OneInch from "../utils/1inch.js";
+import provider from "../utils/ethers.js";
 
 const StakeGyroContract = "0xdc93eb0eb1bf2ac6da14b3ee54a8d7fbb15bb058";
 const gyroToken = "0x1b239abe619e74232c827fbe5e49a4c072bd869d";
